@@ -413,7 +413,7 @@ def main():
                 input_train, tag_neural_type = 'adaptive'
             )
     else:
-        print "Model not implemented yet !!! "
+        print("Model not implemented yet !!! ")
     #
 
 if __name__ == "__main__": main()

@@ -21,7 +21,7 @@ dtype = theano.config.floatX
 
 def sample_weights(numrow, numcol):
     values = numpy.ndarray([numrow, numcol], dtype=dtype)
-    for coli in xrange(numcol):
+    for coli in range(numcol):
         vals = numpy.random.uniform(low=-1., high=1.,  size=(numrow,))
         #vals_norm = numpy.sqrt((vals**2).sum())
         #vals = vals / vals_norm

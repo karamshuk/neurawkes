@@ -33,7 +33,7 @@ def main():
     #
     parser.add_argument(
         '-m', '--ModelGen', #required=True,
-        default = 'conttime',
+        default = 'hawkes',
         type = str,
         choices = ['hawkes', 'hawkesinhib', 'conttime'],
         help='Model used to generate data'
@@ -52,6 +52,7 @@ def main():
     )
     parser.add_argument(
         '-fp', '--FilePretrain', required=False,
+        default = None,
         help='File of pretrained model (e.g. ./tracks/track_PID=XX_TIME=YY/model.pkl)'
     )
     #
@@ -122,7 +123,7 @@ def main():
         'dim_LSTM': args.DimLSTM,
         #'dim_states': args.DimStates,
         'seed_random': args.Seed,
-        'path_pre_train': args.FilePretrain,
+        'path_pre_train': None, #args.FilePretrain,
         'sum_for_time': args.SumForTime,
         'args': None
     }
@@ -174,7 +175,7 @@ def main():
     #elif args.ModelGen == 'fst':
     #    gen_model = seq_gens.FSTGen(settings_gen)
     else:
-        print "Generator NOT implemented : ", args.ModelGen
+        print("Generator NOT implemented : ", args.ModelGen)
     #
     #
     if args.SetParams:
@@ -224,7 +225,7 @@ def main():
     cut_train = numpy.int32(8000)
     cut_dev = numpy.int32(9000)
     cut_test = numpy.int32(10000)
-    print "The cut off for training, dev, test and test1 are : ", (cut_train, cut_dev, cut_test, args.NumSeqs)
+    print("The cut off for training, dev, test and test1 are : ", (cut_train, cut_dev, cut_test, args.NumSeqs))
     #
     #
     time_0 = time.time()
@@ -247,11 +248,11 @@ def main():
         'args': dict_args
     }
     #
-    print "saving ... "
+    print("saving ... ")
     with open(file_save, 'wb') as f:
         pickle.dump(dict_data, f)
 
-    print "finished ! Took {} seconds !!!".format(str(round(dtime,2)))
+    print("finished ! Took {} seconds !!!".format(str(round(dtime,2))))
     #
 
 if __name__ == "__main__": main()
