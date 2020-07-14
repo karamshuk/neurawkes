@@ -415,5 +415,7 @@ def main():
     else:
         print("Model not implemented yet !!! ")
     #
+    time_current = datetime.datetime.now().isoformat()
+    print ("FINISH TIME is : %s" % time_current )
 
 if __name__ == "__main__": main()

@@ -55,7 +55,7 @@ def main():
     )
     parser.add_argument(
         '-ts', '--TagSplit', required=True,
-        choices = ['dev', 'test', 'test1'],
+        choices = ['dev', 'test', 'test1', 'train'],
         help='Which split to test? Dev or Test?'
     )
     #
@@ -158,24 +158,24 @@ def main():
     time_current = datetime.datetime.now().isoformat()
     #
     ## show values ##
-    print ("PID is : %s" % str(id_process) )
-    print ("TIME is : %s" % time_current )
-    print ("Model is : %s" % args.Model )
+    print(("PID is : %s" % str(id_process) ))
+    print(("TIME is : %s" % time_current ))
+    print(("Model is : %s" % args.Model ))
     #print ("CoefL2 is : %s" % str(args.CoefL2) )
-    print ("FileData is : %s" % args.FileData )
+    print(("FileData is : %s" % args.FileData ))
     #if 'lstm' in args.Model:
     #    print ("DimLSTM is : %s" % str(args.DimLSTM) )
-    print ("Seed is : %s" % str(args.Seed) )
-    print ("FilePretrain is : %s" % args.FilePretrain)
+    print(("Seed is : %s" % str(args.Seed) ))
+    print(("FilePretrain is : %s" % args.FilePretrain))
     #print ("TrackPeriod is : %s" % str(args.TrackPeriod) )
     #print ("MaxEpoch is : %s" % str(args.MaxEpoch) )
-    print ("SizeBatch is : %s" % str(1) )
-    print ("PartialPredict is : %s" % args.PartialPredict)
-    print ("PruneStream is : %s" % str(args.PruneStream) )
-    print ("PredictFirst is: %s" % args.PredictFirst )
-    print ("PredictLambda is : %s" % str(args.PredictLambda) )
-    print ("ModelGold is : %s" % args.ModelGold )
-    print ("FileGold is : %s" % args.FileGold )
+    print(("SizeBatch is : %s" % str(1) ))
+    print(("PartialPredict is : %s" % args.PartialPredict))
+    print(("PruneStream is : %s" % str(args.PruneStream) ))
+    print(("PredictFirst is: %s" % args.PredictFirst ))
+    print(("PredictLambda is : %s" % str(args.PredictLambda) ))
+    print(("ModelGold is : %s" % args.ModelGold ))
+    print(("FileGold is : %s" % args.FileGold ))
     #print ("Optimizer is : %s" % args.Optimizer)
     flag_show_1 = (
         args.Model == 'hawkesinhib' or args.Model == 'neural' or args.Model == 'neuralgeneral' or args.Model == 'neuraladapt' or args.Model == 'neuralsimple' or args.Model == 'neuraltime' or args.Model == 'neuralgeneraltime' or args.Model == 'neuraladapttime'
@@ -185,7 +185,7 @@ def main():
     )
     #
     if (flag_show_1 and flag_show_2):
-        print ("Multiple for testing is : %s" % args.MultipleDev)
+        print(("Multiple for testing is : %s" % args.MultipleDev))
     #
     #
     dict_args = {
@@ -234,7 +234,7 @@ def main():
         'loss_type': 'loglikehood',
         'partial_predict': args.PartialPredict,
         'prune_stream': args.PruneStream,
-        'predict_lambda': args.PredictLambda,
+        'predict_lambda': True, #args.PredictLambda,
         'path_gold': args.FileGold,
         'model_gold': args.ModelGold
     }
@@ -270,6 +270,8 @@ def main():
     if tag_model[0] != '_':
         tag_model = '_' + tag_model
     #
+    tag_data = 'conttime'
+
     if '_hawkes' in input_test['path_rawdata']:
         tag_data = 'hawkes'
     if '_hawkesinhib' in input_test['path_rawdata']:
@@ -308,6 +310,7 @@ def main():
     if 'data_conttime' in input_test['path_rawdata']:
         tag_data = 'conttime'
     #
+
     name_model = 'results_Model='+input_test[
         'args'
     ]['Model']+'_Data='+tag_data+'_Split='+input_test[
@@ -389,7 +392,7 @@ def main():
             #    )
             #else:
         else:
-            print "Model not implemented yet !!! "
+            print("Model not implemented yet !!! ")
         #
     #
 
